@@ -1,0 +1,65 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    行動選択画面 第{{ subsession.round_number }}ラウンド (全{{ Constants.num_rounds }}回)
+{% endblock %}
+
+
+{% block content %}
+{% if player.role == "player1" %}
+    
+    <div class="form-group required">
+        <table class="table table-bordered text-center" style="width: auto; margin: auto">
+            <tr>
+                <th colspan="2" rowspan="2"></th>
+                <th colspan="2">相手</th>
+            </tr>
+            <tr>
+                <th>A</th>
+                <th>B</th>
+            </tr>
+            <tr class="highlight-row-on-hover">
+                <th rowspan="2"><span class="rotate90">自分</span></th>
+                <td><button name="decision" value="A" class="btn btn-primary btn-large">A</button></td>
+                <td>{{Constants.player1_A_A_payoff}}, {{Constants.player2_A_A_payoff}}</td>
+                <td>{{ Constants.player1_A_B_payoff }}, {{Constants.player2_A_B_payoff}}</td>
+            </tr>
+            <tr class="highlight-row-on-hover">
+                <td><button name="decision" value="B" class="btn btn-primary btn-large">B</button></td>
+                <td>{{Constants.player1_B_A_payoff}}, {{ Constants.player2_B_A_payoff }}</td>
+                <td>{{Constants.player1_B_B_payoff}}, {{Constants.player2_B_B_payoff}}</td>
+            </tr>
+        </table>
+    </div>
+
+
+{% else %}
+
+    <div class="form-group required">
+        <table class="table table-bordered text-center" style="width: auto; margin: auto">
+            <tr>
+                <th colspan="2" rowspan="2"></th>
+                <th colspan="2">相手</th>
+            </tr>
+            <tr>
+                <th>A</th>
+                <th>B</th>
+            </tr>
+            <tr class="highlight-row-on-hover">
+                <th rowspan="2"><span class="rotate90">自分</span></th>
+                <td><button name="decision" value="A" class="btn btn-primary btn-large">A</button></td>
+                <td>{{Constants.player2_A_A_payoff}}, {{Constants.player1_A_A_payoff}}</td>
+                <td>{{ Constants.player2_B_A_payoff }}, {{Constants.player1_B_A_payoff}}</td>
+            </tr>
+            <tr class="highlight-row-on-hover">
+                <td><button name="decision" value="B" class="btn btn-primary btn-large">B</button></td>
+                <td>{{Constants.player2_A_B_payoff}}, {{ Constants.player1_A_B_payoff }}</td>
+                <td>{{Constants.player2_B_B_payoff}}, {{Constants.player1_B_B_payoff}}</td>
+            </tr>
+        </table>
+    </div>
+
+
+{% endif %}
+{% endblock %}

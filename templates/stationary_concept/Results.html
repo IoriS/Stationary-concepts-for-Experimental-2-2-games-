@@ -1,0 +1,29 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    結果発表
+{% endblock %}
+
+{% block content %}
+
+<p>
+
+
+
+{% if player.role == "player1" %}
+
+    あなたは <strong>{{player.decision}}</strong> を選んで、相手は <strong>{{player.other_player.decision}}</strong> を選びました。よって、あなたの利得は{{player.payoff}}、現在の合計利得は <strong>{{cumulative_1_payoff}}</strong> です。{% if subsession.round_number == Constants.num_rounds %}(行動履歴{% for p in player_in_all_rounds %}{{ p.decision }}{% endfor %}、{{player.role}}属){% endif %}
+
+{% else %}
+
+    あなたは <strong>{{player.decision}}</strong> を選んで、相手は <strong>{{player.other_player.decision}}</strong> を選びました。よって、あなたの利得は{{player.payoff}}、現在の合計利得は <strong>{{cumulative_2_payoff}}</strong> です。{% if subsession.round_number == Constants.num_rounds %}(行動履歴{% for p in player_in_all_rounds %}{{ p.decision }}{% endfor %}、{{player.role}}属){% endif %}
+
+
+{% endif %}
+</p>
+
+    {% next_button %}
+{% endblock %}
+
+
